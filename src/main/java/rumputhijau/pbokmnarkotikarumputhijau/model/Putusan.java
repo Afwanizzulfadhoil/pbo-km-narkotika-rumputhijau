@@ -50,4 +50,6 @@ public class Putusan {
     public  String toString() {
         return nomorPerkara + " | " + namaTerdakwa " | " + jenisNarkotika + " | " + vonisHukuman + " tahun ";
     }
+
+//    testing 1 2 3
 }
