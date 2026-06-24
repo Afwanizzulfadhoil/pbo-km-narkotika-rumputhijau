@@ -56,3 +56,6 @@ public class ConsoleView {
 //+ tampilkanStatistik(stat : StatistikPutusan) : void
 //+ tampilkanPesan(pesan : String) : void
 //+ inputFormPutusan(sc : Scanner) : String[]
+
+public class ConsoleView {
+}
