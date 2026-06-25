@@ -18,7 +18,7 @@ public class StatistikPutusan {
         Putusan terbesar = data.get(0);
 
         for (Putusan p : data) {
-            for (p.getVonisHukuman() > terbesar.getVonisHukuman()) {
+            if (p.getVonisHukuman() > terbesar.getVonisHukuman()) {
                 terbesar = p;
             }
         }
