@@ -14,7 +14,6 @@ public class ConsoleView {
         System.out.println("0. Keluar");
         System.out.print("Pilih menu: ");
 
-
         return 0;
     }
 
@@ -42,9 +41,18 @@ public class ConsoleView {
     public String[] inputFormPutusan(Scanner sc){
         System.out.println("=== INPUT DATA PUTUSAN BARU ===");
         System.out.println("NAMA PUTUSAN: ");
+        sc.nextLine();
 
         String[] data = new String[5];
 
         return data;
     }
 }
+
+// acuan
+//+ tampilkanMenu() : int
+//+ tampilkanDaftarPutusan(list : ArrayList<Putusan>) : void
+//+ tampilkanDetail(p : Putusan) : void
+//+ tampilkanStatistik(stat : StatistikPutusan) : void
+//+ tampilkanPesan(pesan : String) : void
+//+ inputFormPutusan(sc : Scanner) : String[]
