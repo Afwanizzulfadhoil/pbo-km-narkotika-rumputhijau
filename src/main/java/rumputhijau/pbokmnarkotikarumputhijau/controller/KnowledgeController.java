@@ -5,6 +5,7 @@ import rumputhijau.pbokmnarkotikarumputhijau.model.Putusan;
 import rumputhijau.pbokmnarkotikarumputhijau.model.StatistikPutusan;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class KnowledgeController {
     public final KnowledgeRepository repository;
@@ -32,11 +33,43 @@ public class KnowledgeController {
                     data[11]                        // namaHakim
             );
 
-            repository.simpan(putusan);
+            repository.tambahPutusan(p);
             return true;
         } catch (Exception e) {
             System.out.println("Gagal menambahkan data: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<Putusan> tampilkanSemua() {
+        return repository.getSemuaPutusan();
+    }
+
+    public Putusan cariNomorPerkara(String nomor) {
+        return repository.cariNomorPerkara(nomor);
+    }
+
+    public List<Putusan> cariNama(String nama) {
+        return repository.cariNamaTerdakwa(nama);
+    }
+
+    public boolean hapus(String nomor) {
+        repository.hapusPutusan(nomor);
+    }
+
+    public boolean update(String nomor, Putusan baru) {
+        return repository.updatePutusan(nomor, baru);
+    }
+
+    public double rataRataVonis() {
+        return StatistikPutusan.rataRataVonis(
+                new ArrayList<>(repository.getSemuaPutusan())
+        );
+    }
+
+    public Putusan vonisTerberat() {
+        return StatistikPutusan.vonisTerberat(
+                new ArrayList<>(repository.getSemuaPutusan())
+        );
     }
 }
