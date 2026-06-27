@@ -13,6 +13,7 @@ public class KnowledgeController {
     public KnowledgeController(KnowledgeRepository repository) {
         this.repository = repository;
     }
+    public void loadData (String path) {repository.loadFromCSV(path);}
 
     //Menambahkan putusan baru dari data form
     public boolean tambahPutusan(String[] data) {
