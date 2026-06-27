@@ -41,7 +41,7 @@ public class KnowledgeRepository {
                 daftarPutusan.add(putusan);
             }
         } catch (IOException e) {
-            System.out.println("Gagal membaca file CSV" + e.getMessage());
+            System.out.println("Gagal Membaca File CSV" + e.getMessage());
         }
     }
 
