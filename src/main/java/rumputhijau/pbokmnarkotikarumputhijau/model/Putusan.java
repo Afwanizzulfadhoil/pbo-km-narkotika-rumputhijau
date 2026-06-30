@@ -56,6 +56,7 @@ public class Putusan {
     public String getNomorPerkara() {
         return nomorPerkara;
     }
+    public void setNomorPerkara (String nomorPerkara) { this.nomorPerkara = nomorPerkara; }
     public String getNamaTerdakwa() {
         return namaTerdakwa;
     }
@@ -65,6 +66,7 @@ public class Putusan {
     public String getJenisNarkotika() {
         return jenisNarkotika;
     }
+    public void setJenisNarkotika (String jenisNarkotika) { this.jenisNarkotika = jenisNarkotika; }
     public int getVonisHukuman() {
         return vonisHukuman;
     }
@@ -74,6 +76,11 @@ public class Putusan {
     public double getVonisDenda() {
         return vonisDenda;
     }
+    public void setVonisDenda(int vonisDenda) {this.vonisDenda = vonisDenda; }
+    public String getNamaHakim() { return namaHakim;}
+    public void setNamaHakim(String namaHakim) { this.namaHakim = namaHakim; }
+    public int getUmurTerdakwa() { return umurTerdakwa;}
+    public void setUmurTerdakwa(int umurTerdakwa) { this.umurTerdakwa = umurTerdakwa; }
 
     @Override
     public  String toString() {
