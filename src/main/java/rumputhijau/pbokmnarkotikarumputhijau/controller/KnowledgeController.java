@@ -34,7 +34,7 @@ public class KnowledgeController {
                     data[11]                        // namaHakim
             );
 
-            repository.tambahPutusan(p);
+            repository.tambahPutusan(putusan);
             return true;
         } catch (Exception e) {
             System.out.println("Gagal menambahkan data: " + e.getMessage());
@@ -55,7 +55,7 @@ public class KnowledgeController {
     }
 
     public boolean hapus(String nomor) {
-        repository.hapusPutusan(nomor);
+        return repository.hapusPutusan(nomor);
     }
 
     public boolean update(String nomor, Putusan baru) {
@@ -72,5 +72,21 @@ public class KnowledgeController {
         return StatistikPutusan.vonisTerberat(
                 new ArrayList<>(repository.getSemuaPutusan())
         );
+    }
+
+    public int getJumlahData() {
+        return repository.getJumlahData();
+    }
+
+    public List<Putusan> getSemuaPutusan() {
+        return repository.getSemuaPutusan();
+    }
+
+    public double getRataRataVonis() {
+        return rataRataVonis();
+    }
+
+    public Putusan getVonisTerberat() {
+        return vonisTerberat();
     }
 }

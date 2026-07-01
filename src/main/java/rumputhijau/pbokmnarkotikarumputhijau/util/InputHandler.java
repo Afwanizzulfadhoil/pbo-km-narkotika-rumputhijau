@@ -14,16 +14,24 @@ public class InputHandler {
             }
         }
     }
-    public static double inputDouble(String pesan, Scanner sc){
-        while(true){
-            System.out.println(pesan);
+    public static double inputDouble(String pesan, Scanner sc) {
 
-            String input = sc.nextLine().trim();
+        while (true) {
+            try {
+                System.out.print(pesan);
 
-            if (input.isEmpty()){
-                return input;
+                String input = sc.nextLine().trim();
+
+                if (input.isEmpty()) {
+                    System.out.println("Input tidak boleh kosong.");
+                    continue;
+                }
+
+                return Double.parseDouble(input);
+
+            } catch (NumberFormatException e) {
+                System.out.println("Input harus berupa angka desimal.");
             }
-            System.out.println("Input tidak boleh kosong");
         }
     }
 }
