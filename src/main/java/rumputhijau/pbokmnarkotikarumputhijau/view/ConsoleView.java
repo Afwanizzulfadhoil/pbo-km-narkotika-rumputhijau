@@ -92,7 +92,7 @@ public class ConsoleView {
 
         String[] data = new String[12];
 
-        System.out.println("1. Nomer Perkara         : "); data[0] = sc.nextLine();
+        System.out.println("1. Nomor Perkara         : "); data[0] = sc.nextLine();
         System.out.println("2. Pengadilan            : "); data[1] = sc.nextLine();
         System.out.println("3. Tanggal Putusan       : "); data[2] = sc.nextLine();
         System.out.println("4. Nama Terdakwa         : "); data[3] = sc.nextLine();
