@@ -9,7 +9,7 @@ public class Putusan {
     private String namaTerdakwa;
     private int umurTerdakwa;
     private String jenisNarkotika;
-    private double beratBarangBukti;
+    private String beratBarangBukti;
     private String pasalDilanggar;
     private String peranTerdakwa;
     private int vonisHukuman;
@@ -22,7 +22,7 @@ public class Putusan {
     }
 
     public Putusan(String nomorPerkara, String pengadilan, String tanggalPutusan, String namaTerdakwa,
-                   int umurTerdakwa, String jenisNarkotika, double beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
+                   int umurTerdakwa, String jenisNarkotika, String beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
                    int vonisHukuman, double vonisDenda, String namaHakim) {
         this.nomorPerkara = nomorPerkara;
         this.pengadilan = pengadilan;
@@ -81,7 +81,6 @@ public class Putusan {
     public void setNamaHakim(String namaHakim) { this.namaHakim = namaHakim; }
     public int getUmurTerdakwa() { return umurTerdakwa;}
     public void setUmurTerdakwa(int umurTerdakwa) { this.umurTerdakwa = umurTerdakwa; }
-
     @Override
     public  String toString() {
         return nomorPerkara + " | " + namaTerdakwa + " | " + jenisNarkotika + " | " + vonisHukuman + " tahun ";
