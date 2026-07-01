@@ -14,13 +14,17 @@ public class ConsoleView {
         System.out.println("2. Lihat Detail Putusan (Cari Berdasarkan No. Perkara)");
         System.out.println("3. Tampilkan Statistik Putusan");
         System.out.println("4. Tambah Data Putusan Baru");
-        System.out.println("5. Keluar Aplikasi");
+        System.out.println("0. Keluar Aplikasi");
+        System.out.println("================================================");
+        System.out.print("Pilih menu (0-4): ");
 
         int pilihan = -1;
         try{
             pilihan = scanner.nextInt();
         }catch (Exception e){
             tampilkanPesan(" [Error] Input harus berupa angka! ");
+            scanner.nextLine();
+            return pilihan;
         }
         scanner.nextLine();
         return pilihan;
@@ -52,7 +56,7 @@ public class ConsoleView {
         System.out.println("\n======================================================================");
         System.out.printf("                         DETAIL PUTUSAN %s\n", p.getNomorPerkara());
         System.out.println("======================================================================");
-        System.out.println(" Nomer Perkara         : "  + p.getNamaTerdakwa());
+        System.out.println(" Nomer Perkara         : "  + p.getNomorPerkara());
         System.out.println("----------------------------------------------------------------------");
         System.out.println(" Nama Terdakwa         : "  + p.getNamaTerdakwa());
         System.out.println(" Jenis Narkotika       : "  + p.getJenisNarkotika());
