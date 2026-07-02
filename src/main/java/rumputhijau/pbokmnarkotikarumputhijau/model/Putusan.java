@@ -9,7 +9,7 @@ public class Putusan {
     private String namaTerdakwa;
     private int umurTerdakwa;
     private String jenisNarkotika;
-    private String beratBarangBukti;
+    private Double beratBarangBukti;
     private String pasalDilanggar;
     private String peranTerdakwa;
     private int vonisHukuman;
@@ -22,7 +22,7 @@ public class Putusan {
     }
 
     public Putusan(String nomorPerkara, String pengadilan, String tanggalPutusan, String namaTerdakwa,
-                   int umurTerdakwa, String jenisNarkotika, String beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
+                   int umurTerdakwa, String jenisNarkotika, Double beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
                    int vonisHukuman, double vonisDenda, String namaHakim) {
         this.nomorPerkara = nomorPerkara;
         this.pengadilan = pengadilan;
