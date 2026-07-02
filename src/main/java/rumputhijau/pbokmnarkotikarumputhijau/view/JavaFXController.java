@@ -10,6 +10,7 @@ import rumputhijau.pbokmnarkotikarumputhijau.model.Putusan;
 import rumputhijau.pbokmnarkotikarumputhijau.model.StatistikPutusan;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JavaFXController {
     // navigation
@@ -19,7 +20,6 @@ public class JavaFXController {
     //list of data putusan
     @FXML private TableView<Putusan> tablePutusan;
     @FXML private TableColumn<Putusan, String> colNoPerkara;
-    @FXML private TableColumn<Putusan, String> colNamaPerkara;
     @FXML private TableColumn<Putusan, String> colNamaTerdakwa;
     @FXML private TableColumn<Putusan, String> colJenisNarkotika;
     @FXML private TableColumn<Putusan, Integer> colVonis;
@@ -66,7 +66,7 @@ public class JavaFXController {
         });
     }
 
-    public void tampilkanDaftarPutusan(ArrayList<Putusan> list){
+    public void tampilkanDaftarPutusan(List<Putusan> list){
         if(list == null || list.isEmpty()){
             tablePutusan.setPlaceholder(new Label("Belum ada data putusan tersimpan."));
             tablePutusan.setItems(FXCollections.observableArrayList());
@@ -96,13 +96,16 @@ public class JavaFXController {
         }
     }
 
-    public void tampilkanStatistik(StatistikPutusan stat) {
-        if (stat == null) {
+    public void tampilkanStatistik(int totalData, double rataRataVonis, Putusan vonisTerberat) {
+        if (totalData == 0) {
             lblTotalDataset.setText("Data statistik belum tersedia!");
             lblKategoriVonis.setText("");
         } else {
-            lblTotalDataset.setText("Total Dataset : 547 Dokumen Putusan");
-            lblKategoriVonis.setText("Kategori Vonis Terbanyak:\n1. Penjara 1-5 Tahun\n2. Penjara 5-10 Tahun");
+            lblTotalDataset.setText("Total Dataset : " + totalData + " Dokumen Putusan");
+            lblKategoriVonis.setText(
+                    "Rata-rata Vonis: " + String.format("%.2f", rataRataVonis) + " tahun\n"
+                            + "Vonis Terberat: " + vonisTerberat
+            );
         }
     }
 
