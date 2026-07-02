@@ -87,3 +87,4 @@ public class Putusan {
         return nomorPerkara + " | " + namaTerdakwa + " | " + jenisNarkotika + " | " + vonisHukuman + " tahun ";
     }
 }
+// test
