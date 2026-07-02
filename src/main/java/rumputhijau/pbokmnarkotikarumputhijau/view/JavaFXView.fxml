@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1"
+         xmlns="http://javafx.com/javafx/17" fx:controller="rumputhijau.pbokmnarkotikarumputhijau.view.JavaFXController">
+    <tabs>
+        <Tab fx:id="tabDaftar" text="Daftar Putusan">
+            <VBox spacing="10">
+                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                <Label text="DAFTAR PUTUSAN HUKUM" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                <TableView fx:id="tablePutusan" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colNoPerkara" text="No. Perkara" prefWidth="150"/>
+                        <TableColumn fx:id="colNamaTerdakwa" text="Nama Terdakwa" prefWidth="150"/>
+                        <TableColumn fx:id="colJenisNarkotika" text="Jenis Narkotika" prefWidth="150"/>
+                        <TableColumn fx:id="colVonis" text="Vonis (Tahun)" prefWidth="100"/>
+                    </columns>
+                </TableView>
+                <Label fx:id="lblJumlahData" text="Jumlah data: 0 putusan."/>
+            </VBox>
+        </Tab>
 
-</AnchorPane>
+        <Tab fx:id="tabDetail" text="Detail Putusan">
+            <VBox spacing="15">
+                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtCariNoPerkara" promptText="Cari No. Perkara..."/>
+                    <Button text="Cari Detail" onAction="#handleCariPutusan"/>
+                </HBox>
+                <Separator/>
+                <GridPane vgap="10" hgap="10">
+                    <Label text="Nomor Perkara:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblDetailNoPerkara" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Nama Terdakwa:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblDetailTerdakwa" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Jenis Narkotika:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblDetailNarkotika" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Vonis Hukuman:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblDetailVonis" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Vonis Denda:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblDetailDenda" text="-" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                </GridPane>
+            </VBox>
+        </Tab>
+
+        <Tab fx:id="tabStatistik" text="Statistik">
+            <VBox spacing="15">
+                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                <Label text="STATISTIK PUTUSAN NARKOTIKA" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblTotalDataset" text="Data statistik belum tersedia!"/>
+                <Label fx:id="lblKategoriVonis" text=""/>
+            </VBox>
+        </Tab>
+
+        <Tab fx:id="tabInput" text="Tambah Data">
+            <ScrollPane>
+                <VBox spacing="10">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="INPUT DATA PUTUSAN BARU" style="-fx-font-weight: bold;"/>
+                    <GridPane vgap="8" hgap="10">
+                        <Label text="1. Nomor Perkara:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfNoPerkara" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="2. Pengadilan:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfPengadilan" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <Label text="3. Tanggal Putusan:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfTglPutusan" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <Label text="4. Nama Terdakwa:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfNamaTerdakwa" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                        <Label text="5. Umur Terdakwa:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfUmur" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                        <Label text="6. Jenis Narkotika:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfJenisNarkotika" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                        <Label text="7. Berat Barang Bukti:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfBeratBB" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                        <Label text="8. Pasal Dilanggar:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfPasal" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+                        <Label text="9. Peran Terdakwa:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfPeran" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+                        <Label text="10. Vonis (Tahun):" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfVonisHukuman" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+                        <Label text="11. Vonis Denda:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfVonisDenda" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+                        <Label text="12. Nama Hakim:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfNamaHakim" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+                    </GridPane>
+                    <Button text="Simpan Data Putusan" onAction="#handleSimpanPutusan" style="-fx-margin-top: 10;"/>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+    </tabs>
+</TabPane>
