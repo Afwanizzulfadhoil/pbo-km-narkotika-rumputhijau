@@ -3,7 +3,7 @@ package rumputhijau.pbokmnarkotikarumputhijau.model;
 
 
 public class Putusan {
-    private String nomorPerkara;
+    private String nomorPerkara; //Deklarasi atribut tipe data
     private String pengadilan;
     private String tanggalPutusan;
     private String namaTerdakwa;
@@ -21,10 +21,11 @@ public class Putusan {
         jumlahDibuat++;
     }
 
+    //constructor untuk menginisialisasi data
     public Putusan(String nomorPerkara, String pengadilan, String tanggalPutusan, String namaTerdakwa,
                    int umurTerdakwa, String jenisNarkotika, Double beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
                    int vonisHukuman, double vonisDenda, String namaHakim) {
-        this.nomorPerkara = nomorPerkara;
+        this.nomorPerkara = nomorPerkara; //validasi tipe data
         this.pengadilan = pengadilan;
         this.tanggalPutusan = tanggalPutusan;
         this.namaTerdakwa = namaTerdakwa;
@@ -52,7 +53,7 @@ public class Putusan {
             System.out.println("Vonis            : " + vonisHukuman + "tahun");
         }
     }
-
+//getter untuk mengambil tipe data
     public String getNomorPerkara() {
         return nomorPerkara;
     }
