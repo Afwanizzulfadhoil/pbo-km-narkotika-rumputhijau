@@ -15,13 +15,13 @@ public class StatistikPutusan {
     public static Putusan vonisTerberat (ArrayList<Putusan> data) {
         if (data.isEmpty())
             return null;
-        Putusan terbesar = data.get(0);
+        Putusan terberat = data.get(0);
 
         for (Putusan p : data) {
-            if (p.getVonisHukuman() > terbesar.getVonisHukuman()) {
-                terbesar = p;
+            if (p.getVonisHukuman() > terberat.getVonisHukuman()) {
+                terberat = p;
             }
         }
-        return terbesar;
+        return terberat;
     }
 }
