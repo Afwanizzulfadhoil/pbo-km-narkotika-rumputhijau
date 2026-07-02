@@ -31,7 +31,7 @@ public class KnowledgeRepository {
                         data[3],
                         Integer.parseInt(data[4]),
                         data[5],
-                        data[6],
+                        Double.parseDouble(data[6]),
                         data[7],
                         data[8],
                         Integer.parseInt(data[9]),
