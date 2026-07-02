@@ -129,7 +129,6 @@ public class JavaFXController {
         data[10] = tfVonisDenda.getText();
         data[11] = tfNamaHakim.getText();
 
-        // Validasi dasar contoh
         if (data[0].trim().isEmpty() || data[3].trim().isEmpty()) {
             tampilkanPesan("[Error] Nomor Perkara dan Nama Terdakwa tidak boleh kosong!");
             return;
