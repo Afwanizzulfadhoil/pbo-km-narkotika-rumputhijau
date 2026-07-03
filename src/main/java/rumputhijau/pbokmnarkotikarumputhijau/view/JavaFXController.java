@@ -55,7 +55,7 @@ public class JavaFXController {
     public interface ViewListener{
         void onCariPutusan(String noPerkara);
         void onTambahPutusan(String[] data);
-        void onUpdatePutusan(String nomorPerkaraLama, String[] data);
+        void onUpdatePutusan(String nomorPerkaraLama, Putusan data);
         void onHapusPutusan(String nomorPerkara);
         void onMenuSelected(int pilihan);
     }
