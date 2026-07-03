@@ -26,7 +26,7 @@ public class KnowledgeController {
                     data[3],                        // namaTerdakwa
                     ambilAngkaPertama(data[4]),     // umurTerdakwa
                     data[5],                        // jenisNarkotika
-                    data[6],                        // beratBarangBukti
+                    ambilBerat(data[4]),            // beratBarangBukti
                     data[7],                        // pasalDilanggar
                     data[8],                        // peranTerdakwa
                     ambilAngkaPertama(data[9]),     // vonisHukuman
@@ -42,6 +42,13 @@ public class KnowledgeController {
         }
     }
 
+    private String ambilBerat(String text) {
+        String berat = text.trim().replaceAll("[^0-9.,].*$", "");
+        if (berat.isEmpty()) {
+            return "0";
+        }
+        return berat;
+    }
     private int ambilAngkaPertama(String text) {
         String angka = text.trim().replaceAll("[^0-9].*$", "");
         if (angka.isEmpty()) {
