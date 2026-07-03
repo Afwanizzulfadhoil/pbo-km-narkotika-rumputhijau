@@ -42,12 +42,12 @@ public class KnowledgeController {
         }
     }
 
-    private String ambilBerat(String text) {
+    private double ambilBerat(String text) {
         String berat = text.trim().replaceAll("[^0-9.,].*$", "");
         if (berat.isEmpty()) {
-            return "0";
+            return 0;
         }
-        return berat;
+        return Double.parseDouble(berat);
     }
     private int ambilAngkaPertama(String text) {
         String angka = text.trim().replaceAll("[^0-9].*$", "");
