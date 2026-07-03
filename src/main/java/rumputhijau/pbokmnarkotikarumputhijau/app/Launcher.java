@@ -1,12 +1,11 @@
 package rumputhijau.pbokmnarkotikarumputhijau.app;
 
-import rumputhijau.pbokmnarkotikarumputhijau.controller.KnowledgeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import rumputhijau.pbokmnarkotikarumputhijau.controller.KnowledgeController;
 import rumputhijau.pbokmnarkotikarumputhijau.model.KnowledgeRepository;
-import rumputhijau.pbokmnarkotikarumputhijau.model.Putusan;
 import rumputhijau.pbokmnarkotikarumputhijau.view.JavaFXController;
 
 import java.io.IOException;
@@ -18,10 +17,13 @@ public class Launcher extends Application {
         KnowledgeController controller = new KnowledgeController(repository);
         controller.loadData("Putusan.csv");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("/view/JavaFXView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                Launcher.class.getResource("/view/JavaFXView.fxml")
+        );
 
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         JavaFXController viewController = fxmlLoader.getController();
+
         viewController.setListener(new JavaFXController.ViewListener() {
             @Override
             public void onCariPutusan(String noPerkara) {
@@ -39,6 +41,26 @@ public class Launcher extends Application {
             }
 
             @Override
+            public void onUpdatePutusan(String nomorPerkaraLama, String[] data) {
+                if (controller.updatePutusanDariForm(nomorPerkaraLama, data)) {
+                    viewController.tampilkanPesan("Data berhasil diperbarui.");
+                    viewController.tampilkanDaftarPutusan(controller.getSemuaPutusan());
+                } else {
+                    viewController.tampilkanPesan("[Error] Data gagal diperbarui.");
+                }
+            }
+
+            @Override
+            public void onHapusPutusan(String nomorPerkara) {
+                if (controller.hapus(nomorPerkara)) {
+                    viewController.tampilkanPesan("Data berhasil dihapus.");
+                    viewController.tampilkanDaftarPutusan(controller.getSemuaPutusan());
+                } else {
+                    viewController.tampilkanPesan("[Error] Data gagal dihapus.");
+                }
+            }
+
+            @Override
             public void onMenuSelected(int pilihan) {
                 if (pilihan == 1) {
                     viewController.tampilkanDaftarPutusan(controller.getSemuaPutusan());
@@ -51,6 +73,7 @@ public class Launcher extends Application {
                 }
             }
         });
+
         viewController.tampilkanDaftarPutusan(controller.getSemuaPutusan());
 
         stage.setTitle("Putusan Narkotika");
