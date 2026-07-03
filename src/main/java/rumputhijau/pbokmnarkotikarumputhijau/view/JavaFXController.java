@@ -158,4 +158,67 @@ public class JavaFXController {
                 tfJenisNarkotika, tfBeratBB, tfPasal, tfPeran, tfVonisHukuman, tfVonisDenda, tfNamaHakim};
         for (TextField f : fields) f.clear();
     }
+
+    private String[] getFormData() {
+        String[] data = new String[12];
+        data[0] = tfNoPerkara.getText();
+        data[1] = tfPengadilan.getText();
+        data[2] = tfTglPutusan.getText();
+        data[3] = tfNamaTerdakwa.getText();
+        data[4] = tfUmur.getText();
+        data[5] = tfJenisNarkotika.getText();
+        data[6] = tfBeratBB.getText();
+        data[7] = tfPasal.getText();
+        data[8] = tfPeran.getText();
+        data[9] = tfVonisHukuman.getText();
+        data[10] = tfVonisDenda.getText();
+        data[11] = tfNamaHakim.getText();
+        return data;
+    }
+
+    private void isiFormInput(Putusan p) {
+        nomorPerkaraDipilih = p.getNomorPerkara();
+        tfNoPerkara.setText(p.getNomorPerkara());
+        tfPengadilan.setText(p.getPengadilan());
+        tfTglPutusan.setText(p.getTanggalPutusan());
+        tfNamaTerdakwa.setText(p.getNamaTerdakwa());
+        tfUmur.setText(String.valueOf(p.getUmurTerdakwa()));
+        tfJenisNarkotika.setText(p.getJenisNarkotika());
+        tfBeratBB.setText(p.getBeratBarangBukti());
+        tfPasal.setText(p.getPasalDilanggar());
+        tfPeran.setText(p.getPeranTerdakwa());
+        tfVonisHukuman.setText(String.valueOf(p.getVonisHukuman()));
+        tfVonisDenda.setText(formatDendaTanpaRp(p.getVonisDenda()));
+        tfNamaHakim.setText(p.getNamaHakim());
+
+    }
+
+    private String getNomorTarget() {
+        if (nomorPerkaraDipilih != null && !nomorPerkaraDipilih.trim().isEmpty()) {
+            return nomorPerkaraDipilih;
+        }
+        if (tfNoPerkara.getText() != null && !tfNoPerkara.getText().trim().isEmpty()) {
+            return tfNoPerkara.getText();
+        }
+        Putusan putusan = tablePutusan.getSelectionModel().getSelectedItem();
+        return putusan == null ? null : putusan.getNomorPerkara();
+    }
+
+    private DecimalFormat buatFormatRupiah() {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator('.');
+        symbols.setDecimalSeparator(',');
+        DecimalFormat formatter = new DecimalFormat("#,##0", symbols);
+        formatter.setGroupingUsed(true);
+        return formatter;
+    }
+
+    private String formatDenda(double denda) {
+        return "Rp " + formatRupiah.format(denda);
+    }
+
+    private String formatDendaTanpaRp(double denda) {
+        return formatRupiah.format(denda);
+    }
+}
 }
