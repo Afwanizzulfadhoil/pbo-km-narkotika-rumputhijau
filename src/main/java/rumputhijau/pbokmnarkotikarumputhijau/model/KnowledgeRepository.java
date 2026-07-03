@@ -80,7 +80,7 @@ public class KnowledgeRepository {
     }
 
     private int ambilAngkaPertama(String text) {
-        String angka = text.replaceAll("[0-9]", "");
+        String angka = text.replaceAll("[^0-9]", "");
 
         if (angka.isEmpty()) {
             return 0;
