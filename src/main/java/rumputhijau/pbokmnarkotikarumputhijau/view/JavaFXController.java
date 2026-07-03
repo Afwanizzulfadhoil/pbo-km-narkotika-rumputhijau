@@ -282,6 +282,7 @@ public class JavaFXController {
         tfVonisHukuman.setText(String.valueOf(p.getVonisHukuman()));
         tfVonisDenda.setText(formatDendaTanpaRp(p.getVonisDenda()));
         tfNamaHakim.setText(p.getNamaHakim());
+
     }
 
     private String getNomorTarget() {
