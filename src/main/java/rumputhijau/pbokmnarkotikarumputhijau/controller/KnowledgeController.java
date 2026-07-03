@@ -21,14 +21,14 @@ public class KnowledgeController {
 
             Putusan putusan = new Putusan(
                     data[0],                        // nomorPerkara
-                    data[1],                        // pengadilan
-                    data[2],                        // tanggalPutusan
+                    data[2],                        // pengadilan
+                    data[1],                        // tanggalPutusan
                     data[3],                        // namaTerdakwa
                     ambilAngkaPertama(data[4]),     // umurTerdakwa
-                    data[5],                        // jenisNarkotika
+                    data[6],                        // jenisNarkotika
                     ambilBerat(data[4]),            // beratBarangBukti
-                    data[7],                        // pasalDilanggar
-                    data[8],                        // peranTerdakwa
+                    data[8],                        // pasalDilanggar
+                    data[5],                        // peranTerdakwa
                     ambilAngkaPertama(data[9]),     // vonisHukuman
                     ambilNominal(data[10]),         // vonisDenda
                     data[11]                        // namaHakim
