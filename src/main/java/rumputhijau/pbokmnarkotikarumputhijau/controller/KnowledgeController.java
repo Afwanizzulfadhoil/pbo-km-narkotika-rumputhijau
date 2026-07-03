@@ -24,13 +24,13 @@ public class KnowledgeController {
                     data[1],                        // pengadilan
                     data[2],                        // tanggalPutusan
                     data[3],                        // namaTerdakwa
-                    Integer.parseInt(data[4]),      // umurTerdakwa
+                    ambilAngkaPertama(data[4]),     // umurTerdakwa
                     data[5],                        // jenisNarkotika
-                    Double.parseDouble(data[6]),    // beratBarangBukti
+                    data[6],                        // beratBarangBukti
                     data[7],                        // pasalDilanggar
                     data[8],                        // peranTerdakwa
-                    Integer.parseInt(data[9]),      // vonisHukuman
-                    Double.parseDouble(data[10]),   // vonisDenda
+                    ambilAngkaPertama(data[9]),     // vonisHukuman
+                    ambilNominal(data[10]),         // vonisDenda
                     data[11]                        // namaHakim
             );
 
@@ -40,6 +40,22 @@ public class KnowledgeController {
             System.out.println("Gagal menambahkan data: " + e.getMessage());
             return false;
         }
+    }
+
+    private int ambilAngkaPertama(String text) {
+        String angka = text.trim().replaceAll("[^0-9].*$", "");
+        if (angka.isEmpty()) {
+            return 0;
+        }
+        return Integer.parseInt(angka);
+    }
+
+    private double ambilNominal(String text) {
+        String angka = text.replaceAll("[^0-9]", "");
+        if (angka.isEmpty()) {
+            return 0;
+        }
+        return Double.parseDouble(angka);
     }
 
     public List<Putusan> tampilkanSemua() {
