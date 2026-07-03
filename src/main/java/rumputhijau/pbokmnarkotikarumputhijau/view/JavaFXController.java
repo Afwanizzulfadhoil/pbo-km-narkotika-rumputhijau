@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaFXController {
-    // navigation
     @FXML private  TabPane mainTabPane;
     @FXML private  Tab tabDaftar, tabDetail, tabStatistik, tabInput;
 
@@ -117,7 +116,11 @@ public class JavaFXController {
     public void tampilkanDetail(Putusan p) {
         if (p == null) {
             tampilkanPesan("[Error] Data putusan tidak ditemukan!");
-            bersihkanDetail();
+            lblDetailNoPerkara.setText("-");
+            lblDetailTerdakwa.setText("-");
+            lblDetailNarkotika.setText("-");
+            lblDetailVonis.setText("-");
+            lblDetailDenda.setText("-");
         } else {
             mainTabPane.getSelectionModel().select(tabDetail); // Pindah ke tab detail otomatis
             nomorPerkaraDipilih = p.getNomorPerkara();
@@ -134,21 +137,6 @@ public class JavaFXController {
             lblDetailTahun.setText(p.getTanggalPutusan());
             lblDetailUmur.setText(p.getUmurTerdakwa() + " Tahun");
         }
-    }
-
-    public void bersihkanDetail() {
-        lblDetailNoPerkara.setText("-");
-        lblDetailTerdakwa.setText("-");
-        lblDetailNarkotika.setText("-");
-        lblDetailVonis.setText("-");
-        lblDetailDenda.setText("-");
-        lblDetailPasal.setText("-");
-        lblDetailHakim.setText("-");
-        lblDetailPeran.setText("-");
-        lblDetailBeratBB.setText("-");
-        lblDetailPengadilan.setText("-");
-        lblDetailTahun.setText("-");
-        lblDetailUmur.setText("-");
     }
 
     public void tampilkanStatistik(int totalData, double rataRataVonis, Putusan vonisTerberat) {
@@ -173,7 +161,19 @@ public class JavaFXController {
 
     @FXML
     private void handleSimpanPutusan() {
-        String[] data = getFormData();
+        String[] data = new String[12];
+        data[0] = tfNoPerkara.getText();
+        data[1] = tfPengadilan.getText();
+        data[2] = tfTglPutusan.getText();
+        data[3] = tfNamaTerdakwa.getText();
+        data[4] = tfUmur.getText();
+        data[5] = tfJenisNarkotika.getText();
+        data[6] = tfBeratBB.getText();
+        data[7] = tfPasal.getText();
+        data[8] = tfPeran.getText();
+        data[9] = tfVonisHukuman.getText();
+        data[10] = tfVonisDenda.getText();
+        data[11] = tfNamaHakim.getText();
 
         if (data[0].trim().isEmpty() || data[3].trim().isEmpty()) {
             tampilkanPesan("[Error] Nomor Perkara dan Nama Terdakwa tidak boleh kosong!");
@@ -183,6 +183,16 @@ public class JavaFXController {
         if (listener != null) {
             listener.onTambahPutusan(data);
             clearFormInput();
+        }
+    }
+
+    @FXML
+    private void handleCariPutusan() {
+        String keyword = txtCariNoPerkara.getText();
+        if (listener != null && !keyword.trim().isEmpty()) {
+            listener.onCariPutusan(keyword);
+        } else {
+            tampilkanPesan("[Error] Masukkan nomor perkara terlebih dahulu!");
         }
     }
 
@@ -233,22 +243,13 @@ public class JavaFXController {
         mainTabPane.getSelectionModel().select(tabInput);
     }
 
-    @FXML
-    private void handleCariPutusan() {
-        String keyword = txtCariNoPerkara.getText();
-        if (listener != null && !keyword.trim().isEmpty()) {
-            listener.onCariPutusan(keyword);
-        } else {
-            tampilkanPesan("[Error] Masukkan nomor perkara terlebih dahulu!");
-        }
-    }
-
     private void clearFormInput() {
         TextField[] fields = {tfNoPerkara, tfPengadilan, tfTglPutusan, tfNamaTerdakwa, tfUmur,
                 tfJenisNarkotika, tfBeratBB, tfPasal, tfPeran, tfVonisHukuman, tfVonisDenda, tfNamaHakim};
         for (TextField f : fields) f.clear();
-        nomorPerkaraDipilih = null;
     }
+
+
 
     private String[] getFormData() {
         String[] data = new String[12];
