@@ -42,7 +42,7 @@ public class Launcher extends Application {
 
             @Override
             public void onUpdatePutusan(String nomorPerkaraLama, String[] data) {
-                if (controller.updatePutusanDariForm(nomorPerkaraLama, data)) {
+                if (controller.update(nomorPerkaraLama, data)) {
                     viewController.tampilkanPesan("Data berhasil diperbarui.");
                     viewController.tampilkanDaftarPutusan(controller.getSemuaPutusan());
                 } else {
