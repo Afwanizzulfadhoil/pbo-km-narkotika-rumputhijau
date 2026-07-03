@@ -53,35 +53,57 @@ public class Putusan {
         }
     }
 
-    public String getNomorPerkara() {
-        return nomorPerkara;
+    public String getNomorPerkara() {return nomorPerkara;}
+    public void setNomorPerkara (String nomorPerkara) {
+        this.nomorPerkara = nomorPerkara;
     }
-    public void setNomorPerkara (String nomorPerkara) { this.nomorPerkara = nomorPerkara; }
-    public String getNamaTerdakwa() {
-        return namaTerdakwa;
-    }
+    public String getNamaTerdakwa() {return namaTerdakwa;}
     public void setNamaTerdakwa(String namaTerdakwa) {
         this.namaTerdakwa = namaTerdakwa;
     }
-    public String getJenisNarkotika() {
-        return jenisNarkotika;
+    public String getPengadilan() {return pengadilan;}
+    public void setPengadilan(String pengadilan) {
+        this.pengadilan = pengadilan;
     }
-    public void setJenisNarkotika (String jenisNarkotika) { this.jenisNarkotika = jenisNarkotika; }
-    public int getVonisHukuman() {
-        return vonisHukuman;
+    public String getTanggalPutusan() {return tanggalPutusan;}
+    public void setTanggalPutusan(String tanggalPutusan) {
+        this.tanggalPutusan = tanggalPutusan;
     }
+    public String getJenisNarkotika() {return jenisNarkotika;}
+    public void setJenisNarkotika (String jenisNarkotika) {
+        this.jenisNarkotika = jenisNarkotika;
+    }
+    public int getVonisHukuman() {return vonisHukuman;}
     public void setVonisHukuman(int vonisHukuman) {
         this.vonisHukuman = vonisHukuman;
     }
-    public double getVonisDenda() {
-        return vonisDenda;
+    public double getVonisDenda() {return vonisDenda;}
+    public void setVonisDenda(int vonisDenda) {
+        this.vonisDenda = vonisDenda;
     }
-    public void setVonisDenda(int vonisDenda) {this.vonisDenda = vonisDenda; }
     public String getNamaHakim() { return namaHakim;}
-    public void setNamaHakim(String namaHakim) { this.namaHakim = namaHakim; }
+    public void setNamaHakim(String namaHakim) {
+        this.namaHakim = namaHakim;
+    }
     public int getUmurTerdakwa() { return umurTerdakwa;}
-    public void setUmurTerdakwa(int umurTerdakwa) { this.umurTerdakwa = umurTerdakwa; }
-    @Override
+    public void setUmurTerdakwa(int umurTerdakwa) {
+        this.umurTerdakwa = umurTerdakwa;
+    }
+    public double getBeratBarangBukti() {return beratBarangBukti;}
+    public void setBeratBarangBukti(double beratBarangBukti) {
+        this.beratBarangBukti = beratBarangBukti;
+    }
+    public String getPasalDilanggar() { return pasalDilanggar;}
+    public void setPasalDilanggar(String pasalDilanggar) {
+        this.pasalDilanggar = pasalDilanggar;
+    }
+    public String getPeranTerdakwa() { return peranTerdakwa;}
+    public void setPeranTerdakwa(String peranTerdakwa) {
+        this.peranTerdakwa = peranTerdakwa;
+    }
+
+
+        @Override
     public  String toString() {
         return nomorPerkara + " | " + namaTerdakwa + " | " + jenisNarkotika + " | " + vonisHukuman + " tahun ";
     }

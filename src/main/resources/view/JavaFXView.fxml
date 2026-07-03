@@ -21,18 +21,28 @@
                 <TableView fx:id="tablePutusan" VBox.vgrow="ALWAYS"
                            style="-fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #E2E8F0; -fx-overflow-changed: transparent;">
                     <columns>
-                        <TableColumn fx:id="colNoPerkara" text="No. Perkara" prefWidth="180"/>
-                        <TableColumn fx:id="colNamaTerdakwa" text="Nama Terdakwa" prefWidth="220"/>
-                        <TableColumn fx:id="colJenisNarkotika" text="Jenis Narkotika" prefWidth="180"/>
-                        <TableColumn fx:id="colVonis" text="VonisHukuman (Tahun)" prefWidth="150" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colNoPerkara" text="No. Perkara" prefWidth="160"/>
+                        <TableColumn fx:id="colPengadilan" text="Pengadilan" prefWidth="170"/>
+                        <TableColumn fx:id="colTahunPerkara" text="Tahun Perkara" prefWidth="105" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colNamaTerdakwa" text="Nama Terdakwa" prefWidth="190"/>
+                        <TableColumn fx:id="colUmur" text="Umur" prefWidth="70" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colPeran" text="Peran" prefWidth="160"/>
+                        <TableColumn fx:id="colJenisNarkotika" text="Jenis Narkotika" prefWidth="130"/>
+                        <TableColumn fx:id="colBeratBB" text="Berat Barang Bukti" prefWidth="140"/>
+                        <TableColumn fx:id="colPasal" text="Pasal" prefWidth="220"/>
+                        <TableColumn fx:id="colVonis" text="Vonis Hukuman" prefWidth="105" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colDenda" text="Vonis Denda" prefWidth="140" style="-fx-alignment: CENTER_RIGHT;"/>
+                        <TableColumn fx:id="colNamaHakim" text="Nama Hakim" prefWidth="170"/>
                     </columns>
-                    <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-                    </columnResizePolicy>
                 </TableView>
 
-                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #F1F5F9; -fx-padding: 10px; -fx-background-radius: 6px;">
+                <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #F1F5F9; -fx-padding: 10px; -fx-background-radius: 6px;">
                     <Label fx:id="lblJumlahData" text="Jumlah data: 0 putusan." style="-fx-font-weight: bold; -fx-text-fill: #334155;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Edit Terpilih" onAction="#handleEditTerpilih"
+                            style="-fx-background-color: #0284C7; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 7px 14px; -fx-background-radius: 6px; -fx-cursor: hand;"/>
+                    <Button text="Delete Terpilih" onAction="#handleHapusPutusan"
+                            style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 7px 14px; -fx-background-radius: 6px; -fx-cursor: hand;"/>
                 </HBox>
             </VBox>
         </Tab>
@@ -81,6 +91,27 @@
 
                         <Label text="Vonis Denda:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
                         <Label fx:id="lblDetailDenda" text="-" style="-fx-text-fill: #059669; -fx-font-weight: bold;" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                        <Label text="Pasal:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailPasal" text="-" wrapText="true" style="-fx-text-fill: #334155;" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                        <Label text="Nama Hakim:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailHakim" text="-" wrapText="true" style="-fx-text-fill: #334155;" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                        <Label text="Peran:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailPeran" text="-" wrapText="true" style="-fx-text-fill: #334155;" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+                        <Label text="Berat Barang Bukti:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailBeratBB" text="-" style="-fx-text-fill: #334155;" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+                        <Label text="Pengadilan:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailPengadilan" text="-" wrapText="true" style="-fx-text-fill: #334155;" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+                        <Label text="Tahun Perkara:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailTahun" text="-" style="-fx-text-fill: #334155;" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+                        <Label text="Umur:" style="-fx-text-fill: #64748B;" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetailUmur" text="-" style="-fx-text-fill: #334155;" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
                     </GridPane>
                 </VBox>
             </VBox>
@@ -129,8 +160,8 @@
                         <Label text="Pengadilan:" style="-fx-text-fill: #475569;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
                         <TextField fx:id="tfPengadilan" style="-fx-background-radius: 4px; -fx-padding: 6px;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                        <Label text="Tanggal Putusan:" style="-fx-text-fill: #475569;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                        <TextField fx:id="tfTglPutusan" style="-fx-background-radius: 4px; -fx-padding: 6px;" promptText="YYYY-MM-DD" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <Label text="Tahun Perkara:" style="-fx-text-fill: #475569;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="tfTglPutusan" style="-fx-background-radius: 4px; -fx-padding: 6px;" promptText="Contoh: 2024" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
                         <Label text="Nama Terdakwa:" style="-fx-text-fill: #475569;" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
                         <TextField fx:id="tfNamaTerdakwa" style="-fx-background-radius: 4px; -fx-padding: 6px;" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
@@ -160,11 +191,17 @@
                         <TextField fx:id="tfNamaHakim" style="-fx-background-radius: 4px; -fx-padding: 6px;" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
                     </GridPane>
 
-                    <AnchorPane style="-fx-padding: 10px 0 0 0;">
+                    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10px 0 0 0;">
                         <Button text="💾 Simpan Data Putusan" onAction="#handleSimpanPutusan"
-                                AnchorPane.leftAnchor="165.0" prefWidth="200.0"
+                                prefWidth="200.0"
                                 style="-fx-background-color: #059669; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 6px; -fx-cursor: hand; -fx-font-size: 13px;"/>
-                    </AnchorPane>
+                        <Button text="Update Putusan" onAction="#handleUpdatePutusan"
+                                prefWidth="160.0"
+                                style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 6px; -fx-cursor: hand; -fx-font-size: 13px;"/>
+                        <Button text="Delete Putusan" onAction="#handleHapusPutusan"
+                                prefWidth="160.0"
+                                style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 6px; -fx-cursor: hand; -fx-font-size: 13px;"/>
+                    </HBox>
                 </VBox>
             </ScrollPane>
         </Tab>
