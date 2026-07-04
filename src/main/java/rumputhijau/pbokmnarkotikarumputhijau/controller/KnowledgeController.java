@@ -6,6 +6,8 @@ import rumputhijau.pbokmnarkotikarumputhijau.model.StatistikPutusan;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class KnowledgeController {
     public final KnowledgeRepository repository;
@@ -18,23 +20,7 @@ public class KnowledgeController {
     //Menambahkan putusan baru dari data form
     public boolean tambahPutusan(String[] data) {
         try {
-
-            Putusan putusan = new Putusan(
-                    data[0],                        // nomorPerkara
-                    data[2],                        // pengadilan
-                    data[1],                        // tanggalPutusan
-                    data[3],                        // namaTerdakwa
-                    ambilAngkaPertama(data[4]),     // umurTerdakwa
-                    data[6],                        // jenisNarkotika
-                    ambilBerat(data[4]),            // beratBarangBukti
-                    data[8],                        // pasalDilanggar
-                    data[5],                        // peranTerdakwa
-                    ambilAngkaPertama(data[9]),     // vonisHukuman
-                    ambilNominal(data[10]),         // vonisDenda
-                    data[11]                        // namaHakim
-            );
-
-            repository.tambahPutusan(putusan);
+            repository.tambahPutusan(buatPutusanDariForm(data));
             return true;
         } catch (Exception e) {
             System.out.println("Gagal menambahkan data: " + e.getMessage());
@@ -42,19 +28,36 @@ public class KnowledgeController {
         }
     }
 
+    private Putusan buatPutusanDariForm(String[] data) {
+        return new Putusan(
+                data[0],
+                data[1],
+                data[2],
+                data[3],
+                ambilAngkaPertama(data[4]),
+                data[5],
+                ambilBerat(data[6]),
+                data[7],
+                data[8],
+                ambilAngkaPertama(data[9]),
+                ambilNominal(data[10]),
+                data[11]
+        );
+    }
+
     private double ambilBerat(String text) {
-        String berat = text.trim().replaceAll("[^0-9.,].*$", "");
+        String berat = text.trim().replace(",", ".").replaceAll("[^0-9.]", "");
         if (berat.isEmpty()) {
             return 0;
         }
         return Double.parseDouble(berat);
     }
     private int ambilAngkaPertama(String text) {
-        String angka = text.trim().replaceAll("[^0-9].*$", "");
-        if (angka.isEmpty()) {
+        Matcher matcher = Pattern.compile("\\d+").matcher(text);
+        if (!matcher.find()) {
             return 0;
         }
-        return Integer.parseInt(angka);
+        return Integer.parseInt(matcher.group());
     }
 
     private double ambilNominal(String text) {
@@ -81,8 +84,13 @@ public class KnowledgeController {
         return repository.hapusPutusan(nomor);
     }
 
-    public boolean update(String nomor, Putusan baru) {
-        return repository.updatePutusan(nomor, baru);
+    public boolean update(String nomor, String[] baru) {
+        try {
+            return repository.updatePutusan(nomor, buatPutusanDariForm(baru));
+        } catch (Exception e) {
+            System.out.println("Gagal memperbarui data: " + e.getMessage());
+            return false;
+        }
     }
 
     public double rataRataVonis() {
