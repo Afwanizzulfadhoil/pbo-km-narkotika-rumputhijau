@@ -78,7 +78,7 @@ public class Putusan {
         this.vonisHukuman = vonisHukuman;
     }
     public double getVonisDenda() {return vonisDenda;}
-    public void setVonisDenda(int vonisDenda) {
+    public void setVonisDenda(double vonisDenda) {
         this.vonisDenda = vonisDenda;
     }
     public String getNamaHakim() { return namaHakim;}
@@ -103,7 +103,7 @@ public class Putusan {
     }
 
 
-        @Override
+    @Override
     public  String toString() {
         return nomorPerkara + " | " + namaTerdakwa + " | " + jenisNarkotika + " | " + vonisHukuman + " tahun ";
     }

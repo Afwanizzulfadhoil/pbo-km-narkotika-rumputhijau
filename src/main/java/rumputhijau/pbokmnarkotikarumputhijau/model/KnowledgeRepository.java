@@ -3,6 +3,8 @@ package rumputhijau.pbokmnarkotikarumputhijau.model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class KnowledgeRepository {
 
@@ -26,25 +28,28 @@ public class KnowledgeRepository {
                     continue;
                 }
 
-                Putusan putusan = new Putusan(
-                        data.get(0),
-                        data.get(2),
-                        data.get(1),
-                        data.get(3),
-                        ambilAngkaPertama(data.get(4)),
-                        data.get(6),
-                        ambilBerat(data.get(4)),
-                        data.get(8),
-                        data.get(5),
-                        ambilAngkaPertama(data.get(9)),
-                        ambilNominal(data.get(10)),
-                        data.get(11)
-                );
-                daftarPutusan.add(putusan);
+                daftarPutusan.add(buatPutusanDariCsv(data));
             }
         } catch (IOException e) {
             System.out.println("Gagal Membaca File .CSV" + e.getMessage());
         }
+    }
+
+    private Putusan buatPutusanDariCsv(List<String> data) {
+        return new Putusan(
+                data.get(0),
+                data.get(2),
+                data.get(1),
+                data.get(3),
+                ambilAngkaPertama(data.get(4)),
+                data.get(6),
+                ambilBerat(data.get(7)),
+                data.get(8),
+                data.get(5),
+                ambilAngkaPertama(data.get(9)),
+                ambilNominal(data.get(10)),
+                data.get(11)
+        );
     }
 
     private InputStream openCsv(String filePath) throws IOException {
@@ -80,16 +85,19 @@ public class KnowledgeRepository {
     }
 
     private int ambilAngkaPertama(String text) {
-        String angka = text.replaceAll("[^0-9]", "");
-
-        if (angka.isEmpty()) {
+        Matcher matcher = Pattern.compile("\\d+").matcher(text);
+        if (!matcher.find()) {
             return 0;
         }
-        return Integer.parseInt(angka);
+        return Integer.parseInt(matcher.group());
     }
 
     private double ambilBerat(String text) {
-        String angka = text.replaceAll("[^0-9]", "");
+        String angka = text.trim().replace(",", ".");
+        if (angka.isEmpty()) {
+            return 0;
+        }
+        angka = angka.replaceAll("[^0-9.]", "");
         if (angka.isEmpty()) {
             return 0;
         }
@@ -142,8 +150,8 @@ public class KnowledgeRepository {
     }
     public boolean hapusPutusan(String nomorPerkara) {
         return daftarPutusan.removeIf( p -> p.getNomorPerkara().equalsIgnoreCase(nomorPerkara));
-        }
-        public int getJumlahData() {
+    }
+    public int getJumlahData() {
         return daftarPutusan.size();
     }
 }
