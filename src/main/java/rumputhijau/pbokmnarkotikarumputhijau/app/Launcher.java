@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import rumputhijau.pbokmnarkotikarumputhijau.controller.KnowledgeController;
 import rumputhijau.pbokmnarkotikarumputhijau.model.KnowledgeRepository;
+import rumputhijau.pbokmnarkotikarumputhijau.model.Putusan;
 import rumputhijau.pbokmnarkotikarumputhijau.view.JavaFXController;
 
 import java.io.IOException;
