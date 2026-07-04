@@ -34,7 +34,7 @@ Karena proyek ini menggunakan antarmuka grafis **JavaFX**, proses kompilasi sang
 
 ## Video Demo Aplikasi
 *(Link video presentasi YouTube/Google Drive kelompok rumputhijau)*
-- [Tonton Video Demo Aplikasi di Sini](Link disini)
+- [Tonton Video Demo Aplikasi di Sini](https://youtu.be/LUnKEWXFCJA)
 
 ## Daftar Anggota Kelompok
 
