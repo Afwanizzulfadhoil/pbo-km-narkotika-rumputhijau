@@ -1,5 +1,7 @@
 package rumputhijau.pbokmnarkotikarumputhijau.model;
 
+
+
 public class Putusan {
     private String nomorPerkara;
     private String pengadilan;
@@ -7,15 +9,20 @@ public class Putusan {
     private String namaTerdakwa;
     private int umurTerdakwa;
     private String jenisNarkotika;
-    private double beratBarangBukti;
+    private Double beratBarangBukti;
     private String pasalDilanggar;
     private String peranTerdakwa;
     private int vonisHukuman;
     private double vonisDenda;
     private String namaHakim;
+    private static int jumlahDibuat = 0;
+
+    public Putusan() {
+        jumlahDibuat++;
+    }
 
     public Putusan(String nomorPerkara, String pengadilan, String tanggalPutusan, String namaTerdakwa,
-                   int umurTerdakwa, String jenisNarkotika, double beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
+                   int umurTerdakwa, String jenisNarkotika, Double beratBarangBukti, String pasalDilanggar, String peranTerdakwa,
                    int vonisHukuman, double vonisDenda, String namaHakim) {
         this.nomorPerkara = nomorPerkara;
         this.pengadilan = pengadilan;
@@ -29,22 +36,72 @@ public class Putusan {
         this.vonisHukuman = vonisHukuman;
         this.vonisDenda = vonisDenda;
         this.namaHakim = namaHakim;
+
+        jumlahDibuat++;
     }
-    public String getNomorPerkara() {
-        return nomorPerkara;
+
+    public void tampilkan() {
+        System.out.println(this.toString());
     }
-    public String getNamaTerdakwa() {
-        return namaTerdakwa;
+
+    public void tampilkan(boolean detail) {
+        if(detail) {
+            System.out.println("Nomor Perkara    : " + nomorPerkara);
+            System.out.println("Terdakwa         : " + namaTerdakwa);
+            System.out.println("Jenis Narkotika  : " + jenisNarkotika);
+            System.out.println("Vonis            : " + vonisHukuman + "tahun");
+        }
     }
-    public String getJenisNarkotika() {
-        return jenisNarkotika;
+
+    public String getNomorPerkara() {return nomorPerkara;}
+    public void setNomorPerkara (String nomorPerkara) {
+        this.nomorPerkara = nomorPerkara;
     }
-    public int getVonisHukuman() {
-        return vonisHukuman;
+    public String getNamaTerdakwa() {return namaTerdakwa;}
+    public void setNamaTerdakwa(String namaTerdakwa) {
+        this.namaTerdakwa = namaTerdakwa;
     }
-    public double getVonisDenda() {
-        return vonisDenda;
+    public String getPengadilan() {return pengadilan;}
+    public void setPengadilan(String pengadilan) {
+        this.pengadilan = pengadilan;
     }
+    public String getTanggalPutusan() {return tanggalPutusan;}
+    public void setTanggalPutusan(String tanggalPutusan) {
+        this.tanggalPutusan = tanggalPutusan;
+    }
+    public String getJenisNarkotika() {return jenisNarkotika;}
+    public void setJenisNarkotika (String jenisNarkotika) {
+        this.jenisNarkotika = jenisNarkotika;
+    }
+    public int getVonisHukuman() {return vonisHukuman;}
+    public void setVonisHukuman(int vonisHukuman) {
+        this.vonisHukuman = vonisHukuman;
+    }
+    public double getVonisDenda() {return vonisDenda;}
+    public void setVonisDenda(double vonisDenda) {
+        this.vonisDenda = vonisDenda;
+    }
+    public String getNamaHakim() { return namaHakim;}
+    public void setNamaHakim(String namaHakim) {
+        this.namaHakim = namaHakim;
+    }
+    public int getUmurTerdakwa() { return umurTerdakwa;}
+    public void setUmurTerdakwa(int umurTerdakwa) {
+        this.umurTerdakwa = umurTerdakwa;
+    }
+    public double getBeratBarangBukti() {return beratBarangBukti;}
+    public void setBeratBarangBukti(double beratBarangBukti) {
+        this.beratBarangBukti = beratBarangBukti;
+    }
+    public String getPasalDilanggar() { return pasalDilanggar;}
+    public void setPasalDilanggar(String pasalDilanggar) {
+        this.pasalDilanggar = pasalDilanggar;
+    }
+    public String getPeranTerdakwa() { return peranTerdakwa;}
+    public void setPeranTerdakwa(String peranTerdakwa) {
+        this.peranTerdakwa = peranTerdakwa;
+    }
+
 
     @Override
     public  String toString() {
